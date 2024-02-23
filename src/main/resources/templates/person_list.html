@@ -1,23 +1,29 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Welcome to Persons List</title>
 </head>
 <body>
+<h3>Welcome to the list of persons</h3>
 
-<h3>Hello World!</h3>
+<p>Here you will see the list</p>
 
 <table>
-    <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
-    </tr>
-    <tr th:each="person : ${persons}">
+    <tr th:each="person, rowStat : ${persons}">
+        <td th:text="${rowStat.index}">No</td>
         <td th:text="${person.fName}">First Name</td>
         <td th:text="${person.lName}">Last Name</td>
+
+        <td>
+            <a th:href="@{/persons/delete/{idx}(idx=${rowStat.index})}">Delete</a>
+        </td>
+
     </tr>
 </table>
+
+<a th:href="@{/persons/new}">Create a new person</a>
 
 </body>
 </html>
