@@ -33,4 +33,8 @@ public class PersonService {
         persons.remove(idx.intValue());
     }
 
+    public void updatePerson(Integer idx, Person updatedPerson) {
+        if (idx < 0 || idx >= persons.size() || updatedPerson == null) return;
+        persons.set(idx, updatedPerson);
+    }
 }

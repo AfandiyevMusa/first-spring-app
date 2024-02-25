@@ -43,9 +43,24 @@ public class PersonController {
 
     @GetMapping("/delete/{idx}")
     public String deletePerson(@PathVariable Integer idx ){
-//        System.out.println(idx);
         personService.deletePerson(idx);
         return "redirect:/persons";
     }
-}
 
+    @GetMapping("/update/{idx}")
+    public String updateForm(@PathVariable Integer idx, Model model) {
+        if (idx < 0 || idx >= personService.listPersons().size()) {
+            return "redirect:/persons";
+        }
+        Person existingPerson = personService.listPersons().get(idx);
+        model.addAttribute("person", existingPerson);
+        model.addAttribute("personIndex", idx);
+        return "update_person";
+    }
+
+    @PostMapping("/update/{idx}")
+    public String updatePerson(@PathVariable Integer idx, @ModelAttribute("person") Person updatedPerson) {
+        personService.updatePerson(idx, updatedPerson);
+        return "redirect:/persons";
+    }
+}

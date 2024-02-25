@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h3>Update the person</h3>
+
+<form action="#" method="POST" th:action="@{/persons/update/{idx}(idx=${personIndex})}" th:object="${person}">
+
+    <input type="text" th:field="*{fName}" placeholder="First name"/> <br/>
+    <input type="text" th:field="*{lName}" placeholder="Last name"/> <br/>
+    <input type="submit" value="Update Person" />
+</form>
+
+<a th:href="@{/persons}">Back to list</a>
+
+</body>
+</html>

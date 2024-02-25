@@ -17,6 +17,7 @@
         <td th:text="${person.lName}">Last Name</td>
 
         <td>
+            <a th:href="@{/persons/update/{idx}(idx=${rowStat.index})}">Update</a>
             <a th:href="@{/persons/delete/{idx}(idx=${rowStat.index})}">Delete</a>
         </td>
 
